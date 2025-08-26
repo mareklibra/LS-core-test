@@ -15,19 +15,29 @@ This project creates a Docker Compose setup with two main services:
 
 ## How to Start Services
 
-### Before starting env variables:
+### Requirements:
+- podman-compose v1.5.0+
 
-
+### OLLAMA (running locally)
 ```
-export VLLM_URL="http://SERVER_IP:11434/v1"
+export VLLM_URL="http://host.containers.internal:11434/v1"
+```
+
+More info: https://llama-stack.readthedocs.io/en/latest/providers/inference/remote_vllm.html
+
+### Vertex AI running in GCP
+```
+# create ~/.config/gcloud/application_default_credentials.json:
+gcloud auth application-default login   
+
+# Verify login:
+gcloud auth list
+
+# From https://console.cloud.google.com/home/dashboard
 export VERTEXAI_PROJECT="myproject"
 ```
 
-If using google, check that your google cloud account is running correctly:
-
-```
-gcloud auth list
-```
+More info: https://llama-stack.readthedocs.io/en/latest/providers/inference/remote_vertexai.html
 
 ### Using podman-compose
 
